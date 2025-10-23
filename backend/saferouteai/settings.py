@@ -27,7 +27,7 @@ INSTALLED_APPS = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "frontend" / "templates"],  # adjust if your templates are elsewhere
+        "DIRS": [BASE_DIR / "frontend" / "templates"],  # ← point to your frontend templates
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -75,6 +75,7 @@ STATICFILES_DIRS = [BASE_DIR.parent / "frontend" / "static"]
 ORS_API_KEY = os.getenv("ORS_API_KEY")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
+
 
 
 
