@@ -1,36 +1,81 @@
-# streamlit_app/app.py
-
 import streamlit as st
-import sys
-import os
+import requests
+import json
 
-# Add backend folder to path to import your backend code
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../backend/roads')))
+# ------------------------------
+# Config
+# ------------------------------
+BACKEND_URL = "http://localhost:8000"  # Or your deployed Django API URL
 
-# Import functions from your backend (adjust if needed)
+st.set_page_config(page_title="SafeRouteAI", layout="wide")
+st.title("SafeRouteAI - Sirsa Flood & Blocked Road Navigator")
+
+# ------------------------------
+# Helplines panel
+# ------------------------------
+st.header("Emergency & Local Helplines")
+helplines = [
+    {"label": "Police Emergency", "number": "100"},
+    {"label": "Ambulance", "number": "108"},
+    {"label": "Municipal Flood Helpline", "number": "01666-234567"},
+    {"label": "National Highway Helpline", "number": "1033"},
+    {"label": "District Disaster Office, Sirsa", "number": "01666-220200"},
+]
+for h in helplines:
+    st.write(f"**{h['label']}**: {h['number']}")
+
+# ------------------------------
+# Vehicle type selector
+# ------------------------------
+vehicle_type = st.selectbox("Select Vehicle Type", ["pedestrian", "bicycle", "car", "bus", "truck"])
+
+# ------------------------------
+# Blocked roads map
+# ------------------------------
+st.header("Blocked Roads Map")
 try:
-    import models  # from backend/roads/models.py
-except ImportError:
-    st.warning("Backend models not found. Make sure the path is correct.")
+    response = requests.get(f"{BACKEND_URL}/blocked-roads/?vehicle={vehicle_type}")
+    data = response.json()
+    st.json(data)  # You can later integrate with st.map or pydeck for a real map
+except Exception as e:
+    st.error(f"Failed to fetch blocked roads: {e}")
 
-# ---- Streamlit UI ----
+# ------------------------------
+# Route suggestion
+# ------------------------------
+st.header("Route Suggestion")
+origin = st.text_input("Origin (lng,lat)")
+destination = st.text_input("Destination (lng,lat)")
+if st.button("Get Route"):
+    if origin and destination:
+        try:
+            r = requests.get(
+                f"{BACKEND_URL}/route/?origin={origin}&destination={destination}&vehicle={vehicle_type}"
+            )
+            route_data = r.json()
+            st.json(route_data)
+        except Exception as e:
+            st.error(f"Failed to get route: {e}")
 
-st.set_page_config(page_title="Safe Route AI Dashboard", layout="wide")
-st.title("Safe Route AI Dashboard")
-st.write("Welcome to the SafeRoute AI interactive app!")
-
-# Example: Input from user
-route_name = st.text_input("Enter a route name:")
-
-if st.button("Check Route"):
-    # Example function call from models.py
+# ------------------------------
+# Weather info
+# ------------------------------
+st.header("Weather Info")
+city = st.text_input("City", value="Sirsa")
+if st.button("Get Weather"):
     try:
-        # Replace 'check_route' with an actual function in models.py
-        result = models.check_route(route_name)  
-        st.success(f"Route info: {result}")
+        r = requests.get(f"{BACKEND_URL}/weather/?city={city}")
+        st.json(r.json())
     except Exception as e:
-        st.error(f"Error calling backend function: {e}")
+        st.error(f"Failed to fetch weather: {e}")
 
-# Example: Display static info
-st.subheader("Demo Information")
-st.write("You can add graphs, maps, or tables here based on your backend data.")
+# ------------------------------
+# Flood news
+# ------------------------------
+st.header("Latest Flood News")
+if st.button("Get News"):
+    try:
+        r = requests.get(f"{BACKEND_URL}/news/")
+        st.json(r.json())
+    except Exception as e:
+        st.error(f"Failed to fetch news: {e}")
