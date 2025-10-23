@@ -60,8 +60,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": os.getenv("MYSQL_DB", "saferouteai_db"),
-        "USER": os.getenv("MYSQL_USER", "your_db_user"),
-        "PASSWORD": os.getenv("MYSQL_PASSWORD", "your_db_password"),
+        "USER": os.getenv("MYSQL_USER", "fashionaist"),
+        "PASSWORD": os.getenv("MYSQL_PASSWORD", "admin@123"),
         "HOST": os.getenv("MYSQL_HOST", "localhost"),
         "PORT": os.getenv("MYSQL_PORT", "3306"),
         "OPTIONS": {
@@ -75,6 +75,7 @@ STATICFILES_DIRS = [BASE_DIR.parent / "frontend" / "static"]
 ORS_API_KEY = os.getenv("ORS_API_KEY")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
+
 
 
 
