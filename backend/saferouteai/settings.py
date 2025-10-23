@@ -71,8 +71,9 @@ DATABASES = {
 }
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "roads" / "static"]
+STATICFILES_DIRS = [BASE_DIR / "frontend" / "static"]
 ORS_API_KEY = os.getenv("ORS_API_KEY")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
+
 
