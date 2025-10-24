@@ -1,12 +1,7 @@
-Purpose: Python dependencies for backend (Django, MySQL, API calls)
 Django>=4.2
 djangorestframework
 django-cors-headers
 requests
 python-dotenv
 mysqlclient
-streamlit 
-pandas
-numpy
-matplotlib
 gunicorn
