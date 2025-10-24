@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Purpose: Main CSS for styling all UI pages (map, forms, panels)
 */
@@ -33,3 +34,40 @@ form {
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
+=======
+/*
+Purpose: Main CSS for styling all UI pages (map, forms, panels)
+*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    max-width: 1100px;
+    background: #f8f8ff;
+}
+header, footer {
+    background: #1e90ff;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+.helpline-panel, .news-panel {
+    margin: 1em 0;
+    padding: 1em;
+    background: #f0f8ff;
+    border-radius: 8px;
+}
+.map-container {
+    width: 100%;
+    height: 500px;
+    margin: 1em 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+form {
+    margin: 1em 0;
+    padding: 1em;
+    background: #f8f8ff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+>>>>>>> 2f55220dae0bb14c7c90517c68fd70ac27d114b2

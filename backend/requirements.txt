@@ -5,3 +5,8 @@ django-cors-headers
 requests
 python-dotenv
 mysqlclient
+streamlit 
+pandas
+numpy
+matplotlib
+gunicorn
