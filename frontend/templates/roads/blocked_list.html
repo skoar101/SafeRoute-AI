@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!--
 Purpose: UI page showing all reported blocked roads.
 -->
@@ -22,28 +22,3 @@ Purpose: UI page showing all reported blocked roads.
     <a href="{% url 'index' %}">Back to Map</a>
 </body>
 </html>
-=======
-<!--
-Purpose: UI page showing all reported blocked roads.
--->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Blocked Roads List</title>
-    <link rel="stylesheet" href="{% static 'roads/main.css' %}">
-</head>
-<body>
-    <h2>Blocked Roads</h2>
-    <ul>
-    {% for br in blocked_roads %}
-        <li>
-            <strong>{{ br.name }}</strong> ({{ br.reason }}) - Water Level: {{ br.water_level_cm }}cm -
-            Vehicles: {{ br.affected_vehicles|join:", " }}<br>
-            Reported by: {{ br.reporter }} at {{ br.timestamp|date:"Y-m-d H:i" }}
-        </li>
-    {% endfor %}
-    </ul>
-    <a href="{% url 'index' %}">Back to Map</a>
-</body>
-</html>
->>>>>>> 2f55220dae0bb14c7c90517c68fd70ac27d114b2

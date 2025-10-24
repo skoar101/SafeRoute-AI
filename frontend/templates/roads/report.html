@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!--
 Purpose: UI form for reporting a new blocked road (waterlogging or construction)
 -->
@@ -34,40 +34,4 @@ Purpose: UI form for reporting a new blocked road (waterlogging or construction)
     <a href="{% url 'index' %}">Back to Map</a>
 </body>
 </html>
-=======
-<!--
-Purpose: UI form for reporting a new blocked road (waterlogging or construction)
--->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Report a Blocked Road</title>
-    <link rel="stylesheet" href="{% static 'roads/main.css' %}">
-</head>
-<body>
-    <h2>Report a Blocked Road</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="name" placeholder="Road/Area Name" required><br>
-        <select name="reason">
-            <option value="waterlogging">Waterlogging</option>
-            <option value="construction">Construction</option>
-        </select><br>
-        <input type="number" name="water_level_cm" placeholder="Water Level (cm)"><br>
-        <label>Vehicles affected (hold Ctrl to select multiple):</label>
-        <select multiple name="affected_vehicles">
-            <option value="pedestrian">Pedestrian</option>
-            <option value="bicycle">Bicycle</option>
-            <option value="car">Car</option>
-            <option value="bus">Bus</option>
-            <option value="truck">Truck</option>
-        </select><br>
-        <input type="text" name="reporter" placeholder="Your name (or Anonymous)"><br>
-        <textarea name="geojson" placeholder='Paste GeoJSON for blocked segment' required></textarea><br>
-        <input type="file" name="image"><br>
-        <button type="submit">Submit Blockage</button>
-    </form>
-    <a href="{% url 'index' %}">Back to Map</a>
-</body>
-</html>
->>>>>>> 2f55220dae0bb14c7c90517c68fd70ac27d114b2
+
