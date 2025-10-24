@@ -5,3 +5,4 @@ requests
 python-dotenv
 mysqlclient
 gunicorn
+dj_database_url

@@ -5,6 +5,7 @@ Purpose: Django project configuration (apps, DB, keys, static files)
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
@@ -58,18 +59,9 @@ ROOT_URLCONF = "saferouteai.urls"
 WSGI_APPLICATION = "saferouteai.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("MYSQL_DB", "saferouteai_db"),
-        "USER": os.getenv("MYSQL_USER", "fashionaist"),
-        "PASSWORD": os.getenv("MYSQL_PASSWORD", "admin@123"),
-        "HOST": os.getenv("MYSQL_HOST", "localhost"),
-        "PORT": os.getenv("MYSQL_PORT", "3306"),
-        "OPTIONS": {
-            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-        }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     }
-}
+
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR.parent / "frontend" / "static"]
