@@ -21,8 +21,7 @@ def index(request):
         {"label": "National Highway Helpline", "number": "1033"},
         {"label": "District Disaster Office, Sirsa", "number": "01666-220200"},
     ]
-    print("Template path being loaded:", os.path.abspath("frontend/templates/roads/index.html"))
-    print("INDEX TEMPLATE PATH =>", os.path.abspath("frontend/templates/roads/index.html"))
+    print("✅ Loaded template from:", template.origin)
     return render(request, "roads/index.html", {
         "helplines": helplines,
         "city_center": [29.5334, 75.0177],
