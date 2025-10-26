@@ -9,8 +9,8 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "replace-me")
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
+DEBUG = False
+ALLOWED_HOSTS = ['saferoute-ai-9.onrender.com']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
