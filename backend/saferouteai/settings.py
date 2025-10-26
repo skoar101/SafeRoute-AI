@@ -63,9 +63,13 @@ DATABASES = {
     }
 
 
-SSTATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR.parent / "frontend" / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # for collectstatic on Render
+STATICFILES_DIRS = [
+    BASE_DIR.parent / 'frontend' / 'static',  # local development assets
+]
+
 
 ORS_API_KEY = os.getenv("ORS_API_KEY")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
