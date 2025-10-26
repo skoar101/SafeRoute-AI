@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "backend.roads",
     "rest_framework",
     "corsheaders",
     "roads",
@@ -27,7 +28,7 @@ INSTALLED_APPS = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR.parent / "frontend" / "templates"],  # parent goes up from backend
+        "DIRS": [BASE_DIR / "frontend" / "templates"],  # parent goes up from backend
         "APP_DIRS": True,
         'OPTIONS': {
             'context_processors': [
