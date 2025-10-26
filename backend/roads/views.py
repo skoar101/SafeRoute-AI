@@ -7,6 +7,7 @@ from .models import BlockedRoad
 from django.conf import settings
 import requests
 from django.views.decorators.csrf import csrf_exempt
+import os
 
 def vehicle_can_pass(vehicle_type, water_level_cm):
     limits = {"pedestrian": 20, "bicycle": 30, "car": 50, "bus": 80, "truck": 200}
@@ -21,6 +22,7 @@ def index(request):
         {"label": "District Disaster Office, Sirsa", "number": "01666-220200"},
     ]
     print("Template path being loaded:", os.path.abspath("frontend/templates/roads/index.html"))
+    print("INDEX TEMPLATE PATH =>", os.path.abspath("frontend/templates/roads/index.html"))
     return render(request, "roads/index.html", {
         "helplines": helplines,
         "city_center": [29.5334, 75.0177],
