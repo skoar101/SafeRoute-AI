@@ -6,7 +6,7 @@ Purpose: Main homepage UI with helplines, map, news, vehicle selector, route sug
 <html>
 <head>
     <title>SafeRouteAI - Sirsa Flood & Blocked Road Navigator</title>
-    <link rel="stylesheet" href="{% static 'frontend/static/roads/main.css' %}">   <!--not sure if its right-->
+    <link rel="stylesheet" href="{% static 'roads/main.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
@@ -14,6 +14,8 @@ Purpose: Main homepage UI with helplines, map, news, vehicle selector, route sug
     <header>
         <h1>SafeRouteAI - Sirsa Flood & Blocked Road Navigator</h1>
     </header>
+
+    <!-- Helplines -->
     <section class="helpline-panel">
         <h2>Emergency & Local Helplines</h2>
         <ul>
@@ -22,21 +24,29 @@ Purpose: Main homepage UI with helplines, map, news, vehicle selector, route sug
             {% endfor %}
         </ul>
     </section>
+
+    <!-- News -->
     <section class="news-panel" id="news-panel"></section>
+
+    <!-- Map -->
     <section class="map-container">
         <div id="map" style="height:500px;width:100%;"></div>
     </section>
+
+    <!-- Vehicle Selector -->
     <section>
-        <form>
-            <label>Vehicle Type:</label>
-            <select id="vehicle-type">
-                <option value="pedestrian">Pedestrian</option>
-                <option value="bicycle">Bicycle</option>
-                <option value="car" selected>Car</option>
-                <option value="bus">Bus</option>
-                <option value="truck">Truck</option>
-            </select>
-        </form>
+        <label>Vehicle Type:</label>
+        <select id="vehicle-type">
+            <option value="pedestrian">Pedestrian</option>
+            <option value="bicycle">Bicycle</option>
+            <option value="car" selected>Car</option>
+            <option value="bus">Bus</option>
+            <option value="truck">Truck</option>
+        </select>
+    </section>
+
+    <!-- Route Form -->
+    <section>
         <form id="route-form">
             <label>Origin (lng,lat):</label>
             <input type="text" id="origin" required>
@@ -44,17 +54,18 @@ Purpose: Main homepage UI with helplines, map, news, vehicle selector, route sug
             <input type="text" id="destination" required>
             <button type="submit">Suggest Route</button>
         </form>
-        <div id="suggested-route"></div>
-        <a href="{% url 'report' %}">Report a Blocked Road</a> |
-        <a href="{% url 'blocked_list' %}">See Blocked Roads</a>
+        <section id="route-result">
+            <p id="suggested-route"></p>
+        </section>
     </section>
+
+    <!-- Footer -->
     <footer>
-        <small>
-            Powered by OpenStreetMap, Leaflet, Django, OpenWeatherMap, NewsAPI | &copy; 2025 SafeRouteAI
-        </small>
+        <small>Powered by OpenStreetMap, Leaflet, Django, OpenWeatherMap, NewsAPI | &copy; 2025 SafeRouteAI</small>
     </footer>
+
     <script>
-        var map = L.map('map').setView({{ city_center }}, 13);
+        var map = L.map('map').setView({{ city_center|safe }}, 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
