@@ -63,8 +63,10 @@ DATABASES = {
     }
 
 
-STATIC_URL = "/static/"
+SSTATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR.parent / "frontend" / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 ORS_API_KEY = os.getenv("ORS_API_KEY")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
