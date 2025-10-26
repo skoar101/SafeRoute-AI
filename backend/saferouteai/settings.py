@@ -27,7 +27,7 @@ INSTALLED_APPS = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "frontend" / "templates"],  # ← point to your frontend templates
+        "DIRS": [BASE_DIR.parent / "frontend" / "templates"],  # parent goes up from backend
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
