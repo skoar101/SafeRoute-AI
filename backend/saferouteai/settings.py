@@ -11,8 +11,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "replace-me")
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
+DEBUG = os.environ.get("DEBUG", "False") == "True"      #recently added
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -29,7 +30,7 @@ INSTALLED_APPS = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "frontend" / "templates"],  # ← point to your frontend templates
+        "DIRS": [BASE_DIR.parent / "frontend" / "templates"],  # ← points to SafeRoute-AI/frontend/templates
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -41,6 +42,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -58,9 +60,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = "saferouteai.urls"
 WSGI_APPLICATION = "saferouteai.wsgi.application"
 
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-    }
+DATABASES = {"default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))}
 
 
 # Static files (CSS, JavaScript, Images)
